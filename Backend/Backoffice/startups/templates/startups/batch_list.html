@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Startups by Batch{% endblock %}
+
+{% block content %}
+<h2>Startups by Batch</h2>
+<form method="get" action="{% url 'startups:batch_list' %}">
+    <label for="year">Filter by Year:</label>
+    <select name="year" id="year" onchange="this.form.submit()">
+        <option value="">All</option>
+        {% for year in years %}
+        <option value="{{ year }}" {% if year == selected_year %}selected{% endif %}>{{ year }}</option>
+        {% endfor %}
+    </select>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Link</th>
+            <th>Logo</th>
+            <th>Year</th>
+            <th>Tags</th>
+            <th>Batch</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for startup in startups %}
+            {% if startup.batch %}
+        <tr>
+            <td>{{ startup.name }}</td>
+            <td>{{ startup.description }}</td>
+            <td><a href="{{ startup.link }}" target="_blank">Link</a></td>
+            <td><img src="{{ startup.logo.url }}" alt="{{ startup.name }}" style="width: 100px;"></td>
+            <td>{{ startup.year }}</td>
+            <td>{{ startup.tags }}</td>
+            <td>{{ startup.batch }}</td>
+            <td>{{ startup.city }}</td>
+        </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+<style>
+    .startup-logo {
+        width: 100px;
+        height: auto;
+        max-height: 100px;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Sections{% endblock %}
+
+{% block content %}
+<h2>Manage Sections</h2>
+<ul>
+    {% for section in sections %}
+    <li>
+        <a href="{% url 'edit_section' section.id %}">{{ section.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

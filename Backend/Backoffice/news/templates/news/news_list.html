@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}News List{% endblock %}
+{% block content %}
+<h2>News List</h2>
+<a href="{% url 'news:add_news' %}" class="btn btn-primary">Add News</a> <!-- Updated this line -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Place</th>
+            <th>Tags</th>
+            <th>Banner Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for news in news_list %}
+        <tr>
+            <td>{{ news.title }}</td>
+            <td>{{ news.description }}</td>
+            <td>{{ news.date }}</td>
+            <td>{{ news.place }}</td>
+            <td>{{ news.tags }}</td>
+            <td>
+                <img src="{{ news.banner_image.url }}" alt="{{ news.title }}" style="max-width: 100px;">
+            </td>
+            <td>
+                <a href="{% url 'news:edit_news' news.id %}" class="btn btn-warning btn-sm">Edit</a> <!-- Updated this line -->
+                <a href="{% url 'news:delete_news' news.id %}" class="btn btn-danger btn-sm">Delete</a> <!-- Updated this line -->
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

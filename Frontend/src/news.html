@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - Orange Fab</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300|Open+Sans:300|Oxygen|Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FAF6F7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+        width: 100%;
+        background-color: #FAF6F2;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 2;
+    }
+
+    .logo {
+        position: absolute;
+        top: 25px;
+        left: 15px;
+        height: 75px;
+    }
+
+    header h1 {
+        position: absolute;
+        top: 30px;
+        left: 100px;
+        font-size: 30px;
+        font-weight: bolder;
+        color: #ffffff;
+        font-family: 'Rubik One', sans-serif;
+        width: 261px;
+        height: 52px;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        padding: 10px;
+        margin: 0;
+        border-radius: 50px;
+        position: absolute;
+        top: 40px;
+        left: 350px;
+        width: auto;
+        height: auto;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #171717;
+        border: 1px groove #fff;
+    }
+
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 24px;
+        display: block;
+        text-align: center;
+        font-family: 'Rubik Light', sans-serif;
+        padding: 10px 20px;
+        border-radius: 50px;
+    }
+
+    nav ul li a.active {
+        background-color: #FD853A;
+        color: #fff;
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 42px;
+        right: 30px;
+        display: inline-block;
+    }
+
+    .language-btn {
+        background-color: rgb(23, 23, 23);
+        border: 1px groove white;
+        color: #FFFFFF;
+        padding: 10px 20px;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 24px;
+        font-family: 'Rubik', sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 140px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 10px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .flag-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: url('../images/background.png') no-repeat center center/cover;
+        z-index: 1;
+    }
+
+    .content {
+    padding-top: 200px;
+    margin-left : 10 px;
+    margin-bottom: 10px; 
+}
+
+.contentt {
+    padding-top: 70px;
+    margin-left : 10 px;
+    margin-bottom: 10px; 
+}
+
+
+
+.content h1 {
+    font-size: 24px;
+    color: #333;
+}
+ 
+.orange-fab {
+    color: #FF7900;
+    font-weight: bold;
+}
+
+.or{
+    color: #050505;
+    font-weight: bold;
+    margin-bottom: 200px; 
+}
+
+
+.container-parent {
+    display: flex;
+    
+    
+}
+
+.container1 {
+    width: 60%; 
+    background-color: #fdeaab;
+    padding: 40px;
+    border: 1px solid #fceb9f;
+    border-radius: 18px;
+    margin-bottom: 10px;
+   justify-content: 60px;
+   margin-right: 20 px;
+   
+}
+.container2 {
+    width: 60%; 
+    background-color: #fdeaab;
+    padding: 40px;
+    border: 1px solid #fceb9f;
+    border-radius: 18px;
+    margin-bottom: 10px;
+   justify-content: 60px;
+   margin-left: 20px;
+   
+}
+
+.filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .sort-button {
+            background-color: #f3c999;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .sort-button:hover {
+            background-color: #e0b686;
+        }
+        #date-dropdown {
+            margin-left: 10px;
+            padding: 5px;
+            font-size: 16px;
+            display: none;
+        }
+        .search-bar {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .news-item {
+            display: flex;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        .news-item img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+        .news-content {
+            max-width: 800px;
+            
+        }
+        .news-content h2 {
+            font-size: 18px;
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .news-content p {
+            font-size: 14px;
+            color: #666;
+
+        }
+
+
+
+
+footer {
+
+        background-color: #000;
+        color: #fff;
+        padding: 20px 300px;
+        text-align: center;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-column {
+        flex: 1;
+        min-width: 200px;
+        margin: 10px;
+    }
+
+    .footer-title {
+        color: #F2F4FF;
+        opacity: 55%;
+        text-align: left;
+    }
+
+    .footer-text {
+        text-align: left;
+    }
+
+    .footer-column p {
+        margin: 5px 0;
+    }       
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="../images/orange.png" alt="Orange Logo" class="logo">
+        <h1 class="or">Orange Fab Maroc</h1>
+        <nav>
+            <ul>
+                <li><a href="Accueil.html" data-en="Homepage" data-fr="Accueil">Homepage</a></li>
+                <li><a href="Portfolio.html" data-en="Portfolio" data-fr="Portfolio">Portfolio</a></li>
+                <li><a href="Chatbot.html" data-en="ChatBot" data-fr="ChatBot">ChatBot</a></li>
+                <li><a href="Coming-soon.html" data-en="Events" data-fr="Événements">Events</a></li>
+                <li><a href="Coming-soon.html" data-en="News" data-fr="Nouvelles" class="active">News</a></li>
+            </ul>
+            <div class="dropdown">
+                <button class="language-btn" onclick="switchLanguage()">Language</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="switchLanguage('en')">
+                        <img src="../images/uk.png" alt="UK Flag" class="flag-icon"> English
+                    </a>
+                    <a href="#" onclick="switchLanguage('fr')">
+                        <img src="../images/france.png" alt="France Flag" class="flag-icon"> French
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="content">
+            <h1>Actualités et nouvelles à <span class="orange-fab">l’Orange Fab</span></h1>
+        </div>
+    
+        <!-- Container for This Week's News -->
+        <div class="container-parent">
+            <div class="container1">
+                {% if news_this_week.exists %}
+                    <img src="{{ news_this_week.first.banner_image.url }}" alt="This Week's News Image">
+                    <h3>{{ news_this_week.first.title }}</h3>
+                    <p>{{ news_this_week.first.description|truncatewords:30 }}</p>
+                    <button onclick="openPopup('{{ news_this_week.first.id }}')">Read more</button>
+                {% else %}
+                    <p>No news this week.</p>
+                {% endif %}
+            </div>
+    
+            <!-- Container for This Month's News -->
+            <div class="container2">
+                {% if news_this_month.exists %}
+                    <img src="{{ news_this_month.first.banner_image.url }}" alt="This Month's News Image">
+                    <h3>{{ news_this_month.first.title }}</h3>
+                    <p>{{ news_this_month.first.description|truncatewords:30 }}</p>
+                    <button onclick="openPopup('{{ news_this_month.first.id }}')">Read more</button>
+                {% else %}
+                    <p>No news this month.</p>
+                {% endif %}
+            </div>
+        </div>
+    
+        <!-- Section for All News -->
+        <div class="contentt">
+            <h1>All News</h1>
+        </div>
+        <div class="filter-bar">
+            <div>
+                <button class="sort-button" id="sortButton">Sort By Date</button>
+                <select id="date-dropdown">
+                    {% for news in all_news %}
+                        <option value="{{ news.date }}">{{ news.date }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="text" class="search-bar" id="searchBar" placeholder="Search...">
+        </div>
+    
+        <div class="news-container" id="newsContainer">
+            {% for news in all_news %}
+            <div class="news-item" data-date="{{ news.date }}">
+                <img src="{{ news.banner_image.url }}" alt="News Image">
+                <div class="news-content">
+                    <h2>{{ news.title }}</h2>
+                    <p>{{ news.description|truncatewords:30 }}</p>
+                    <button onclick="openPopup('{{ news.id }}')">Read more</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    
+        <!-- Popup for detailed news view -->
+        <div id="newsPopup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <h2 id="popup-title"></h2>
+                <p id="popup-description"></p>
+                <p id="popup-date"></p>
+                <p id="popup-place"></p>
+                <p id="popup-tags"></p>
+                <img id="popup-banner" src="" alt="">
+            </div>
+        </div>
+    
+        <script>
+            const sortButton = document.getElementById('sortButton');
+            const dateDropdown = document.getElementById('date-dropdown');
+            const newsItems = document.querySelectorAll('.news-item');
+            const searchBar = document.getElementById('searchBar');
+            const newsContainer = document.getElementById('newsContainer');
+    
+            // Toggle dropdown visibility
+            sortButton.addEventListener('click', () => {
+                dateDropdown.style.display = dateDropdown.style.display === 'none' ? 'inline-block' : 'none';
+            });
+    
+            // Sort news items by selected date
+            dateDropdown.addEventListener('change', () => {
+                const selectedDate = dateDropdown.value;
+                newsItems.forEach(item => {
+                    item.style.display = item.getAttribute('data-date') === selectedDate ? 'flex' : 'none';
+                });
+            });
+    
+            // Filter news items based on search input
+            searchBar.addEventListener('input', () => {
+                const searchValue = searchBar.value.toLowerCase();
+                newsItems.forEach(item => {
+                    const textContent = item.querySelector('.news-content').textContent.toLowerCase();
+                    item.style.display = textContent.includes(searchValue) ? 'flex' : 'none';
+                });
+            });
+    
+            // Open popup with news details
+            function openPopup(newsId) {
+                fetch(`/news/${newsId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('popup-title').innerText = data.title;
+                        document.getElementById('popup-description').innerText = data.description;
+                        document.getElementById('popup-date').innerText = data.date;
+                        document.getElementById('popup-place').innerText = data.place;
+                        document.getElementById('popup-tags').innerText = data.tags;
+                        document.getElementById('popup-banner').src = data.banner_image;
+                        document.getElementById('newsPopup').style.display = 'block';
+                    });
+            }
+    
+            // Close popup
+            function closePopup() {
+                document.getElementById('newsPopup').style.display = 'none';
+            }
+        </script>
+    </main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <p class="footer-title" data-en="About Us" data-fr="À propos de nous"><i>About Us</i></p>
+            <p class="footer-text" data-en="Our Startups" data-fr="Nos startups">Our Startups</p>
+            <p class="footer-text" data-en="Our Clients" data-fr="Nos clients">Our Clients</p>
+        </div>
+        <div class="footer-column">
+            <p class="footer-title" data-en="Spaces" data-fr="Espaces">Spaces</p>
+            <p class="footer-text" data-en="Rabat" data-fr="Rabat">Rabat</p>
+            <p class="footer-text" data-en="Agadir" data-fr="Agadir">Agadir</p>
+            <p class="footer-text" data-en="Tanger" data-fr="Tanger">Tanger</p>
+        </div>
+        <div class="footer-column">
+            <p class="footer-title" data-en="Support" data-fr="Support">Support</p>
+            <p class="footer-text" data-en="Contact" data-fr="Contact">Contact</p>
+            <p class="footer-text" data-en="Legal Notice" data-fr="Mentions légales">Legal Notice</p>
+            <p class="footer-text" data-en="Private Policy" data-fr="Politique de confidentialité">Private Policy</p>
+            <p class="footer-text" data-en="Cookies" data-fr="Cookies">Cookies</p>
+            <p class="footer-text" data-en="Cookies Configuration" data-fr="Configuration des cookies">Cookies Configuration</p>
+        </div>
+        <div class="footer-column social-icons">
+            <img src="../images/x.png" alt="X Icon">
+            <img src="../images/linkedin.png" alt="LinkedIn Icon">
+            <img src="../images/instagram.png" alt="Instagram Icon">
+            <img src="../images/youtube.png" alt="YouTube Icon">
+        </div>
+    </div>
+</footer>
+</body>
+</html>

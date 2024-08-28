@@ -1,0 +1,58 @@
+<!-- templates/events/event_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<h2>Events</h2>
+<a href="{% url 'events:add_event' %}" class="btn btn-primary">+ Add Event</a>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Place</th>
+            <th>Link</th>
+            <th>Banner</th>
+            <th>Visibility</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.description }}</td>
+            <td>{{ event.start_date }} to {{ event.end_date }}</td>
+            <td>{{ event.start_time }} to {{ event.end_time }}</td>
+            <td>{{ event.place }}</td>
+            <td><a href="{{ event.form_link }}" target="_blank">Link</a></td>
+            <td><img src="{{ event.banner_image.url }}" alt="{{ event.title }}" style="width: 100px;"></td>
+            <td>
+                <button onclick="toggleVisibility('{{ event.id }}')" class="btn {% if event.visible %}btn-success{% else %}btn-secondary{% endif %}">
+                    {{ event.visible|yesno:"Visible,Hidden" }}
+                </button>
+            </td>
+            <td>
+                <a href="{% url 'events:edit_event' event.id %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'events:delete_event' event.id %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function toggleVisibility(eventId) {
+        axios.post(`/events/toggle_visibility/${eventId}/`)
+            .then(response => {
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error toggling visibility:', error);
+            });
+    }
+</script>
+{% endblock %}

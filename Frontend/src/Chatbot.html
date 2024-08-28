@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - Orange Fab</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300|Open+Sans:300|Oxygen|Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+<header>
+    <img src="../images/orange.png" alt="Orange Logo" class="logo">
+    <h1 class="orange-name">Orange Fab</h1>
+    <nav>
+        <ul>
+            <li><a href="Accueil.html">Homepage</a></li>
+            <li><a href="Portfolio.html">Portfolio</a></li>
+            <li><a href="Chatbot.html">ChatBot</a></li>
+            <li><a href="event.html">Events</a></li>
+            <li><a href="news.html">News</a></li>
+        </ul>
+        <div class="dropdown">
+            <button class="language-btn" onclick="switchLanguage()">Language</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="switchLanguage('en')">
+                    <img src="../images/uk.png" alt="UK Flag" class="flag-icon"> English
+                </a>
+                <a href="#" onclick="switchLanguage('fr')">
+                    <img src="../images/france.png" alt="France Flag" class="flag-icon"> French
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container chatbot-container">
+        <div class="row padded_row">
+            <div class="col-md-12">
+                <div class="fabbot-section">
+                    <h2>FabBot</h2>
+                    <p>Since Wayflyer was founded, they’ve talked to hundreds of eCommerce businesses. They asked them about the biggest problems they face and what keeps them up at night. They listened. And they acted. Since Wayflyer was founded, they’ve talked to hundreds of eCommerce businesses.</p>
+                </div>
+            </div>
+        </div>
+        
+           
+            <div class="col-md-9">
+                <div class="chat_window">
+                    <div class="top_menu">
+                        <div class="title">ChatBot - Jarvis <button class="menu-button" id=" MyButton" onclick="showMenuOptions()" onclick="hideButton()">Menu</button> </div>    
+                    </div>
+                    <ul class="messages"></ul>
+                    <div class="bottom_wrapper">
+                        <input id="msg_input" placeholder="Respond here..." />
+                        <button id="send_button" class="send_button"><i class="fa fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</main>
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <p class="footer-title"><i>About Us</i></p>
+            <p class="footer-text">Our Startups</p>
+            <p class="footer-text">Our Clients</p>
+        </div>
+        <div class="footer-column">
+            <p class="footer-title">Spaces</p>
+            <p class="footer-text">Rabat</p>
+            <p class="footer-text">Agadir</p>
+            <p class="footer-text">Tanger</p>
+        </div>
+        <div class="footer-column">
+            <p class="footer-title">Support</p>
+            <p class="footer-text">Contact</p>
+            <p class="footer-text">Legal Notice</p>
+            <p class="footer-text">Private Policy</p>
+            <p class="footer-text">Cookies</p>
+            <p class="footer-text">Cookies Configuration</p>
+        </div>
+        <div class="footer-column social-icons">
+            <img src="../images/x.png" alt="X Icon">
+            <img src="../images/linkedin.png" alt="LinkedIn Icon">
+            <img src="../images/instagram.png" alt="Instagram Icon">
+            <img src="../images/youtube.png" alt="YouTube Icon">
+        </div>
+    </div>
+</footer>
+
+<style>
+    /* Global Styles */
+    body {
+        background-color: #FAF6F7;
+        font-family: 'Calibri', 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        width: 100%;
+        background-color: #FAF6F2;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        border-bottom: none;
+    }
+
+    .logo {
+        position: absolute;
+        top: 25px;
+        left: 15px;
+        height: 75px;
+    }
+
+    header h1 {
+        position: absolute;
+        top: 15px;
+        left: 100px;
+        font-size: 40px;
+        font-weight: bold;
+        color: #000;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background-color: #000;
+        border-radius: 100px;
+        position: absolute;
+        top: 40px;
+        left: 320px;
+        width: 1000px;
+        height: 52px;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0 15px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 24px;
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        display: inline-block;
+    }
+
+    .language-btn {
+        background-color: rgb(23, 23, 23);
+        border: 1px groove white;
+        color: #FFFFFF;
+        padding: 11px 20px;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 21px;
+        font-family: 'Rubik', sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 140px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        border-radius: 10px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .flag-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Main Styles */
+
+    .options-btn{
+        background-color: #ffb67b;
+        border: 0px groove #FF7900;
+        color: #ffffff;
+        font-weight: bold;
+        padding: 11px 20px;
+        border-radius: 5px; 
+    }
+    .container.chatbot-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    .fabbot-section {
+        width: 1300px;
+        height: 200px;
+        background-color: #FEF3EA;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        padding: 20px;
+        margin-bottom: 50px;
+    }
+
+    .fabbot-section h2 {
+        font-size: 36px;
+        color: #000;
+        margin-bottom: 20px;
+    }
+
+    .fabbot-section p {
+        font-size: 18px;
+        color: #000;
+    }
+
+    .row.padded_row {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+
+    .chat_window {
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        background-color: #fff;
+        overflow: hidden;
+        width: 100%;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .text-zone {
+        width: 85%;
+        background-color: #FEF3EA;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 20px;
+    }
+
+    .text-zone h2 {
+        font-size: 36px;
+        color: #000;
+    }
+
+    .text-zone p {
+        font-size: 18px;
+        color: #000;
+    }
+
+    .top_menu {
+        background-color: #FF7900;
+        padding: 13px 0px;
+        box-shadow: 0 1px 30px rgba(253, 172, 20, 0.1);
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .title{
+        color: #ffffff;
+    }
+
+    .messages {
+        list-style: none;
+        padding: 20px 10px 0 10px;
+        margin: 0;
+        flex: 1;
+        overflow-y: scroll;
+    }
+
+    .messages .message {
+        clear: both;
+        overflow: hidden;
+        margin-bottom: 20px;
+        transition: all 0.5s linear;
+        opacity: 0;
+        animation: slideIn 0.5s forwards;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .messages .message .avatar {
+        height: 40px;
+        width: 40px;
+        background-size: cover !important;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .messages .message .timestamp {
+        font-size: 10px;
+        font-weight: 300;
+        text-align: right;
+        margin-top: 5px;
+        color: #000000;
+    }
+
+    .messages .message.appeared {
+        opacity: 1;
+    }
+
+    .messages .message .text_wrapper {
+        display: inline-block;
+        padding: 20px;
+        border-radius: 6px;
+        min-width: 150px;
+        position: relative;
+    }
+
+    .messages .message .text_wrapper::after,
+    .messages .message .text_wrapper:before {
+        top: 18px;
+        border: solid transparent;
+        content: ' ';
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .messages .message .text_wrapper::after {
+        border-width: 13px;
+        margin-top: 0px;
+    }
+
+    .messages .message .text_wrapper::before {
+        border-width: 15px;
+        margin-top: -2px;
+    }
+
+    .messages .message.left .avatar {
+        float: left;
+        background: url('../images/bot.png');
+    }
+
+    .messages .message.left .text_wrapper {
+        background-color: #FEF3EA;
+        color: #000000;
+        margin-left: 20px;
+        max-width: 400px; 
+    }
+
+    .messages .message.left .text_wrapper::after,
+    .messages .message.left .text_wrapper::before {
+        right: 100%;
+        border-right-color: #FEF3EA;
+    }
+
+    .messages .message.left .timestamp {
+        color: #000000;
+    }
+
+    .messages .message.right .avatar {
+        float: right;
+        background: url('../images/user.png');
+    }
+
+    .messages .message.right .text_wrapper {
+        background-color: #e1e1e1;
+        color: #000000;
+        margin-right: 20px;
+        float: right;
+        max-width: 400px;
+    }
+
+    .messages .message.right .text_wrapper::after,
+    .messages .message.right .text_wrapper::before {
+        left: 100%;
+        border-left-color:  #e1e1e1;
+    }
+
+    .messages .message.right .timestamp {
+        color: #000000;
+    }
+
+    .bottom_wrapper {
+        background-color: #fff;
+        padding: 20px;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .bottom_wrapper #msg_input {
+        flex-grow: 1;
+        outline-width: 0;
+        padding: 12px;
+        border: 1px solid #bcbdc0;
+        border-radius: 50px;
+        margin-right: 15px;
+    }
+
+    .send_button {
+        width: 50px;
+        height: 50px;
+        background-color: #FF7900;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 24px;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .send_button:hover {
+        background-color: #D87000;
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 20px;
+    }
+
+    .menu {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .menu-item {
+        width: 100%;
+        background-color: #FF7900;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+    }
+
+
+    /* Footer Styles */
+    footer {
+        background-color: #000;
+        color: #fff;
+        padding: 20px 300px;
+        text-align: center;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-column {
+        flex: 1;
+        min-width: 200px;
+        margin: 10px;
+    }
+
+    .footer-title {
+        color: #F2F4FF;
+        opacity: 55%;
+        text-align: left;
+    }
+
+    .footer-text {
+        text-align: left;
+    }
+
+    .footer-column p {
+        margin: 5px 0;
+    }
+
+    .social-icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-icons img {
+
+        margin: 0 10px;
+        width: 24px;
+        height: 24px;
+
+    }
+
+    .menu-button {
+    background-color: rgb(248, 210, 148);
+    color: rgb(212, 87, 3);
+    border: none;
+    padding: 8px 11px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 18px;
+    border-width: 13px;
+    float: right;
+    margin-right: 25px;
+    margin-top: 0px;
+
+}
+
+.menu-button:hover {
+    background-color: #faf7f3;
+    margin-left: 0 px;
+}
+
+
+   
+
+
+</style>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        axios.get('http://127.0.0.1:8000/internal_chatbot/api/questions/')
+            .then(function (response) {
+                const questions = response.data;
+                questions.forEach(question => {
+                    const questionElement = document.createElement('div');
+                    questionElement.innerHTML = `<h3>${question.text}</h3>`;
+                    question.answers.forEach(answer => {
+                        const answerElement = document.createElement('p');
+                        answerElement.innerHTML = answer.text;
+                        questionElement.appendChild(answerElement);
+                    });
+                    document.body.appendChild(questionElement);
+                });
+            })
+            .catch(function (error) {
+                console.error('Error fetching questions:', error);
+            });
+    });
+
+    /**
+     * Returns the current datetime for the message creation.
+     */
+    function getCurrentTimestamp() {
+        return new Date();
+    }
+
+    function hideButton() {
+    document.getElementById("myButton").style.display = "none";
+}
+
+
+    /**
+     * Renders a message on the chat screen based on the given arguments.
+     * This is called from the `showUserMessage` and `showBotMessage`.
+     */
+    function renderMessageToScreen(args) {
+        // local variables
+        let displayDate = (args.time || getCurrentTimestamp()).toLocaleString('en-IN', {
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+        });
+        let messagesContainer = $('.messages');
+
+        // init element
+        let message = $(`
+    <li class="message ${args.message_side}">
+        <div class="avatar"></div>
+        <div class="text_wrapper">
+            <div class="text">${args.text}</div>
+            <div class="timestamp">${displayDate}</div>
+        </div>
+    </li>
+    `);
+
+        // add to parent
+        messagesContainer.append(message);
+
+        // animations
+        setTimeout(function () {
+            message.addClass('appeared');
+        }, 0);
+        messagesContainer.animate({ scrollTop: messagesContainer.prop('scrollHeight') }, 300);
+    }
+
+    /* Sends a message when the 'Enter' key is pressed.
+     */
+    $(document).ready(function() {
+        $('#msg_input').keydown(function(e) {
+            // Check for 'Enter' key
+            if (e.key === 'Enter') {
+                // Prevent default behaviour of enter key
+               
+                e.preventDefault();
+                // Trigger send button click event
+                $('#send_button').click();
+            }
+        });
+    });
+    msg_input.disabled=true;
+    /**
+     * Displays the user message on the chat screen. This is the right side message.
+     */
+    function showUserMessage(message, datetime) {
+        renderMessageToScreen({
+            text: message,
+            time: datetime,
+            message_side: 'right',
+        });
+    }
+
+    /**
+     * Displays the chatbot message on the chat screen. This is the left side message.
+     */
+    function showBotMessage(message, datetime) {
+        renderMessageToScreen({
+            text: message,
+            time: datetime,
+            message_side: 'left',
+        });
+    }
+    z=0;
+
+    function showMenuOptions(){
+        showInitialOptions() ;
+    };
+
+    /**
+     * Get input from user and show it on screen on button click.
+     */
+    $('#send_button').on('click', function (e) {
+        // get and show message and reset input
+        sendMessage();
+        $('#msg_input').val('');
+
+        
+    });
+
+    let user = Number;
+    const userInput = document.querySelector('#msg_input');  
+    let currentQuestion = '';
+    let userResponses = {};
+    
+
+    function showInitialOptions() {
+        const optionsHTML = `
+            
+                Bonjour ! Choisissez une option pour continuer, vous êtes  :<br>
+                <button class="options-btn" onclick="showInvestisseurOptions()">Investisseur</button>
+                <button class="options-btn" onclick="showStartupOptions()">Startup</button>
+            
+        `;
+        showBotMessage(optionsHTML);
+    }
+    
+    window.showInvestisseurOptions = function() {
+        
+        showUserMessage(`Menu Investisseur `);
+        const optionsHTML = `
+                
+                Voici vos options en tant qu'investisseur :<br><br>
+                <button class="options-btn" onclick="showInvestisseurDetails('a_propos')">Orange Fab Maroc</button><br><br>
+                <button class="options-btn" onclick="showInvestisseurDetails('startups')">Connaître nos startups</button><br><br>
+                <button class="options-btn" onclick="showInvestisseurDetails('contractees')">Startups contractées</button><br><br>
+                <button class="options-btn" onclick="showInvestisseurDetails('partenaires')">Nos partenaires</button><br><br>
+                <button class="options-btn" onclick="showInvestisseurDetails('rdv')">Prendre un rendez-vous</button><br>
+            
+        `;
+        
+        showBotMessage(optionsHTML);
+    };
+
+    window.showStartupOptions = function() {
+        z = 1;
+        showUserMessage(`Menu Startup`);
+        const optionsHTML = `
+            
+                Voici vos options en tant que startup :<br><br>
+                <button class="options-btn"  onclick="showStartupDetails('a_propos')">Orange Fab Maroc</button><br><br>
+                <button class="options-btn" onclick="showStartupDetails('startups')">Connaître nos startups</button><br><br>
+                <button class="options-btn" onclick="showStartupDetails('contractees')">Startups contractées</button><br><br>
+                <button class="options-btn" onclick="window.location.href='events.html'">Programmes et événements</button><br><br>
+                <button class="options-btn" onclick="showStartupDetails('partenaires')">Nos partenaires</button><br><br>
+                <button class="options-btn" onclick="showStartupDetails('val')">Valorisation comptable de votre entreprise</button><br><br>
+                <button class="options-btn" onclick="showStartupDetails('financement')">Le financement au Maroc</button><br><br>
+                <button class="options-btn" onclick="showStartupDetails('solution')">Proposer une solution à Orange</button><br><br>
+                <button class="options-btn" onclick="showStartupDetails('rdv')">Prendre un rendez-vous</button><br>
+                
+            
+        `;
+    
+        showBotMessage(optionsHTML);
+    };
+    
+    window.showInvestisseurDetails = function(option) {
+        let detailsHTML = '';
+    
+        switch (option) {
+            case 'a_propos':
+                showUserMessage(`À propos de Orange Fab Maroc`);
+                detailsHTML = `Orange Fab Maroc est le programme Orange d’accélération à destination d’entrepreneurs, fondateurs de startups à fort potentiel. Il propose aux startups prometteuses une contribution au développement de leur business et de leurs activités.
+                <br><br><B><u>Orange Fab Maroc propose plusieurs services aux startups accélérées:</u></B><br><br>
+
+                <B>Accélérateur Corporate</B><br>
+                Alliance commerciale entre les entités opérationnelles/Business d'Orange et les startups accélérées.<br><br>
+
+                <B>Financement</B><br>
+                Accès aux financements via nos fonds d'investissement partenaire.<br><br>
+    
+                <B>Réseau international Orange Fab</B><br>
+                Capacité de conduire les startups vers les marchés internationaux grâce à son réseau international de Orange Fab implantés dans le monde entier.<br><br>
+
+                <B>Infrastructure et mentorat</B><br>
+                Accès à un espace de co-working, sessions de mentorat avec des experts nationaux et internationaux.<br><br>
+
+                <B>Meetups avec les investisseurs</B><br>
+                Rencontres stratégiques avec des investisseurs, des grandes entreprises, le réseau international des Orange Fab...<br><br>
+    
+                <B>Expértises personnalisées</B><br>
+                Organisés pour répondre aux besoins spécifiques des startups sur différents thèmes : présentation, technologies, financement, exportation, croissance...<br><br>
+
+                <B>Événements</B><br>
+                Accès privilégié aux événements nationaux et internationaux sponsorisés par Orange.<br><br>
+    
+                <button onclick="showInvestisseurOptions()">retour au menu</button>`;
+                showBotMessage(detailsHTML);
+                
+                break;
+            case 'startups':
+                showUserMessage(`Connaître nos startups`);
+                detailsHTML = `
+                        Choisissez comment vous souhaitez connaître nos startups :<br><br>
+                        <button class="options-btn" onclick="showStartupOptionsBy('secteur')">Choisir par secteur</button><br>
+                        <button class="options-btn" onclick="showStartupOptionsBy('batch')">Choisir par batch</button><br>
+                        <button class="options-btn" onclick="window.location.href='portfolio.html'">Voir tout le portfolio</button><br>                   
+                `;
+                showBotMessage(detailsHTML);
+                break;
+            case 'partenaires':
+                showUserMessage(`Nos partenaires`);
+                detailsHTML = `<B>Nos partenaires incluent</B><br><ul>
+                <li>Orange Ventures</li>
+                <li>Hedera Hashgraph</li>
+                <li>Flat6Labs</li>
+                <li>Digital Africa</li></ul><br>
+                <button onclick="showInvestisseurOptions()">retour au menu</button>`;
+                showBotMessage(detailsHTML);
+                break;
+            case 'contractees':
+                showUserMessage(`Startups contractées`);
+                detailsHTML = `
+                   
+                        Choisissez une approche client :<br>
+                        <button class="options-btn" onclick="showContractees('B2B/B2C')">B2B/B2C</button>
+                        <button class="options-btn" onclick="showContractees('B2B2C')">B2B2C</button>
+                        <button class="options-btn" onclick="showContractees('B2B')">B2B</button>
+                        <button class="options-btn" onclick="showContractees('B2C')">B2C</button>
+                        <button class="options-btn" onclick="showContractees('C2C')">C2C</button>
+                  
+                `;
+                showBotMessage(detailsHTML);
+                break;
+            case 'rdv':
+                msg_input.disabled=false;
+                showUserMessage(`Prendre un rendez-vous`);
+                askQuestion("Quel est votre nom ?", 'nameI');
+                break;
+        }
+    }
+
+    window.showStartupDetails = function(option) {
+        let detailsHTML = '';
+    
+        switch (option) {
+            case 'a_propos':
+                showUserMessage(`À propos de Orange Fab Maroc`);
+                detailsHTML = `Orange Fab Maroc est le programme Orange d’accélération à destination d’entrepreneurs, fondateurs de startups à fort potentiel. Il propose aux startups prometteuses une contribution au développement de leur business et de leurs activités.
+                <br><br><B><u>Orange Fab Maroc propose plusieurs services aux startups accélérées:</u></B><br><br>
+
+                <B>Accélérateur Corporate</B><br>
+                Alliance commerciale entre les entités opérationnelles/Business d'Orange et les startups accélérées.<br><br>
+
+                <B>Financement</B><br>
+                Accès aux financements via nos fonds d'investissement partenaire.<br><br>
+    
+                <B>Réseau international Orange Fab</B><br>
+                Capacité de conduire les startups vers les marchés internationaux grâce à son réseau international de Orange Fab implantés dans le monde entier.<br><br>
+
+                <B>Infrastructure et mentorat</B><br>
+                Accès à un espace de co-working, sessions de mentorat avec des experts nationaux et internationaux.<br><br>
+
+                <B>Meetups avec les investisseurs</B><br>
+                Rencontres stratégiques avec des investisseurs, des grandes entreprises, le réseau international des Orange Fab...<br><br>
+    
+                <B>Expértises personnalisées</B><br>
+                Organisés pour répondre aux besoins spécifiques des startups sur différents thèmes : présentation, technologies, financement, exportation, croissance...<br><br>
+
+                <B>Événements</B><br>
+                Accès privilégié aux événements nationaux et internationaux sponsorisés par Orange.<br><br>`;
+                showBotMessage(detailsHTML);
+                break;
+            case 'startups':
+                showUserMessage(`Connaître nos startups`);
+                detailsHTML = `
+                    
+                        Choisissez comment vous souhaitez connaître nos startups :<br>
+                        <button class="options-btn" onclick="showStartupOptionsBy('secteur')">Choisir par secteur</button><br>
+                        <button class="options-btn" onclick="showStartupOptionsBy('batch')">Choisir par batch</button><br>
+                        <button class="options-btn" onclick="window.location.href='portfolio.html'">Voir tout le portfolio</button>
+                    
+                `;
+                showBotMessage(detailsHTML);
+                break;
+            case 'partenaires':
+                showUserMessage(`Nos partenaires`);
+                detailsHTML = `<B>Nos partenaires incluent</B> <ul>
+                <li>Orange Ventures</li>
+                <li>Hedera Hashgraph</li>
+                <li>Flat6Labs</li>
+                <li>Digital Africa</li></ul><br>
+                <button onclick="showStartupOptions()">retour au menu</button>`;
+                showBotMessage(detailsHTML);
+                break;
+            case 'contractees':
+                showUserMessage(`Startups contractées`);
+                detailsHTML = `
+                        Choisissez une approche client :<br>
+                        <button class="options-btn" onclick="showContractees('B2B/B2C')">B2B/B2C</button><br><br>
+                        <button class="options-btn" onclick="showContractees('B2B2C')">B2B2C</button><br><br>
+                        <button class="options-btn" onclick="showContractees('B2B')">B2B</button><br><br>
+                        <button class="options-btn" onclick="showContractees('B2C')">B2C</button><br><br>
+                        <button class="options-btn" onclick="showContractees('C2C')">C2C</button><br><br>
+                `;
+                showBotMessage(detailsHTML);
+                break;
+            case 'financement':
+            showUserMessage(`Le financement au Maroc`);
+                detailsHTML = `
+                    <B>Financement au Maroc:</B><br>
+                    <button class="options-btn" onclick="showFin('programmes')">Programmes de financement</button><br><br>
+                    <button class="options-btn" onclick="showFin('fonds')">Fonds d'investissement</button><br><br>
+                    `;
+                showBotMessage(detailsHTML);
+                break;
+            case 'solution':
+                msg_input.disabled=false;
+                showUserMessage(`Proposer une solution à Orange`);
+                askQuestion("Quel est votre nom ?", 'nameS');
+                break;
+            case 'rdv':
+                msg_input.disabled=false;
+                showUserMessage(`Prendre un rendez-vous`);
+                askQuestion("Quel est votre nom ?", 'name');
+                break;
+            case 'val':
+                msg_input.disabled=false;
+                showUserMessage(`Valorisation de l'entreprise`);
+                askQuestion("Combien valait l'entreprise au départ, avant de prendre en compte les gains et les pertes des dernières années en MAD ?", 'vci');
+                break;
+        }
+    };
+
+    window.showFin = function(option){
+        let optionsHTML = '';
+    
+        switch (option) {
+            case 'programmes':
+                showUserMessage(`Programmes de financement`);
+                optionsHTML = `<B>Les appuis:</B><br>
+                    <button class="options-btn" onclick="showDetailFin('innov')">Appui à l'innovation</button><br><br>
+                    <button class="options-btn" onclick="showDetailFin('green')">Appui à la croissance verte & énergies renouvelables</button><br><br>
+                    <button class="options-btn" onclick="showDetailFin('TPE')">Appui aux autoentrepreneurs & TPE</button><br><br>
+                    <button class="options-btn" onclick="showDetailFin('PME')">Appui aux PME</button><br><br>
+                    <button class="options-btn" onclick="showDetailFin('equity')">Private equity & business angels</button><br><br>
+                    <button class="options-btn" onclick="showDetailFin('participative')">Appui à la Finance Participative</button><br><br>
+                    <button class="options-btn" onclick="showDetailFin('covid')">Appui à la relance Post-COVID 19</button><br><br>
+                    <button class="options-btn" onclick="showDetailFin('export')">Appui à l'Export</button><br><br>
+                    <button class="options-btn" onclick="showDetailFin('marchés')">Appui à l'accès aux marchés</button><br><br>
+                    <button class="options-btn" onclick="showDetailFin('recrutement')">Appui au recrutement et à la formation</button><br><br>
+                    
+                    `
+                break;
+            case 'fonds':
+            showUserMessage(`Fonds d'investissement`);
+                optionsHTML = `<B>Les fonds d'investissement:</B><br>
+                    <button class="options-btn" onclick="window.open(' https://enactus-morocco.org/', '_blank')">ENACTUS</button><br><br>
+                    <button class="options-btn" onclick="window.open(' https://incubooster.ma/', '_blank')">INCUBOOSTER</button><br><br>
+                    <button class="options-btn" onclick="window.open(' https://univers-startup.ma/', '_blank')">UNIVERS STARTUP & ENTREPRENEUR</button><br><br>
+                    <button class="options-btn" onclick="window.open(' https://ueuromed.org/structure-innovation/euromed-innovation-center-eic', '_blank')">EIC (EUROMED INNOVATION CENTER)</button><br><br>
+                    <button class="options-btn" onclick="window.open('https://ce3m.ma/index.php/fr/', '_blank')">CLUSTER CE3M</button><br><br>
+                    <button class="options-btn" onclick="window.open('https://www.clusterenr.ma/', '_blank')">CLUSTER EnR</button><br><br>
+                    <button class="options-btn" onclick="window.open('https://emergingbusinessfactory.com/en/', '_blank')"> EBF (EMERGING BUSINESS FACTORY)</button><br><br>
+                    <button class="options-btn" onclick="window.open('https://www.rdmaroc.com/', '_blank')">R&D MAROC</button><br><br>
+                    <button class="options-btn" onclick="window.open('https://www.reseau-entreprendre.org/maroc/decouvrir-rem/', '_blank')">REM (RÉSEAU ENTREPRENDRE MAROC)</button><br><br>
+                    <button class="options-btn" onclick="window.open('https://www.startupmaroc.org/', '_blank')">STARTUP MAROC</button><br><br>
+                    <button class="options-btn" onclick="window.open('https://impactlab.africa/fr/home-fr/', '_blank')">IMPACT LAB</button><br><br>
+                    <button class="options-btn" onclick="window.open('https://www.sb3s.com/', '_blank')">SB3S</button><br><br>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>   `
+                break;
+            }
+            showBotMessage(optionsHTML);
+
+    };
+
+    window.showDetailFin = function(option){
+        let optionsHTML = '';
+    
+        switch (option) {
+            case 'innov':
+                showUserMessage(`Appui à l'innovation`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open(' https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - INNOV IDEA </button>
+                    <button class="options-btn" onclick="window.open(' https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - INNOV START</button>
+                    <button class="options-btn" onclick="window.open(' http://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - INNOV RISK</button>
+                    <button class="options-btn" onclick="window.open(' https://marocpme.gov.ma/', '_blank')">Maroc PMe - CRÉATIVITÉ &CO-DÉVELOPPEMENT</button>
+                    <button class="options-btn" onclick="window.open(' https://marocpme.gov.ma/', '_blank')">Maroc PMe - TATWIR STARTUP</button>
+                    <button class="options-btn" onclick="window.open(' https://dev.marocpme.gov.ma/tatwir/tatwir-startup/', '_blank')">Maroc PMe - MOUWAKABA Accélération de la Jeune Entreprise Innovante</button>
+
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+            case 'green':
+                showUserMessage(`Appui à la croissance verte & énergies renouvelables`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open('https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - GREEN INVEST</button>
+                    <button class="options-btn" onclick="window.open('https://marocpme.gov.ma/', '_blank')">Maroc PMe - TATWIR CROISSANCE VERTE</button>
+                    <button class="options-btn" onclick="window.open('https://www.environnement.gov.ma/fr/service/fodep/914-fonds-de-depollutionindustrielle-fodep', '_blank')">Ministere de l Energie, des Mines et du Developpement Durable - Fonds de dépollution industrielle(FODEP III)</button>
+                    <button class="options-btn" onclick="window.open('https://www.environnement.gov.ma/fr/service/fodep/915-mecanisme-volontaire-dedepollution-industrielle-mvdih', '_blank')">Ministere de l Energie, des Mines et du Developpement Durable - Mécanisme Volontaire de DépollutionIndustrielle (MVDIH)</button>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+            case 'TPE':
+                showUserMessage(`Appui aux autoentrepreneurs & TPE`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open('https://www.forsa.ma/', '_blank')">Forsa - FORSA</button>
+                    <button class="options-btn" onclick="window.open('https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - INTELAKA</button>
+                    <button class="options-btn" onclick="window.open('http://www.indh.ma/', '_blank')">Initiative Nationale pour le Developpement Humain - Appui à l’entrepreneuriat des jeunes-INDH </button>
+                    <button class="options-btn" onclick="window.open('https://marocpme.gov.ma/', '_blank')">Maroc PMe - NAWAT</button>
+                    <button class="options-btn" onclick="window.open('https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - DAMANE EXPRESS</button>
+                    <button class="options-btn" onclick="window.open('https://www.mcamorocco.ma/', '_blank')">MILLENNIUM CHALLENGE ACCOUNT MOROCCO - Appui à l’Entrepreneuriat Agricole-MCC</button>
+                    <button class="options-btn" onclick="window.open('https://dev.marocpme.gov.ma/istitmar/', '_blank')">Maroc PMe - ISTITMAR TPE</button>
+                    <button class="options-btn" onclick="window.open('https://dev.marocpme.gov.ma/inmaa/', '_blank')">Maroc PMe - INMAA</button>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+            case 'PME':
+                showUserMessage(`Appui aux PME`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open('https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - MEZZANINE PME</button>
+                    <button class="options-btn" onclick="window.open('https://marocpme.gov.ma/', '_blank')">Maroc PMe - MOUWAKABA</button>
+                    <button class="options-btn" onclick="window.open('https://marocpme.gov.ma/', '_blank')">Maroc PMe - ISTITMAR PME</button>
+                    <button class="options-btn" onclick="window.open('https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - LIGNE FRANCAISE</button>
+                    <button class="options-btn" onclick="window.open('https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - MDM INVEST</button>
+                    <button class="options-btn" onclick="window.open('https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - DAMANE ATAYSSIR</button>
+                    <button class="options-btn" onclick="window.open('https://www.tamwilcom.ma/fr', '_blank')">TAMWILCOM - DAMANE ISTITMAR</button>
+                    <button class="options-btn" onclick="window.open('https://www.ebrd.com/fr/maroc.html', '_blank')">European Bank - Programmes d’appui de la BERD</button>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+            case 'equity':
+                showUserMessage(`Private equity & business angels`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open('http://www.tamwilcom.ma/fr/votre-projet/fonds-publics-prives-fpp', '_blank')">TAMWILCOM - Fonds Publics-Privés</button>
+                    <button class="options-btn" onclick="window.open('https://mnf.ma/fr/', '_blank')">Maroc Numeric Fund - Maroc Numeric Fund</button>
+                    <button class="options-btn" onclick="window.open('https://azurpartners.ma/', '_blank')">AZUR innovation - Azur Innovation Fund</button>
+                    <button class="options-btn" onclick="window.open('https://www.seaf.com/', '_blank')">SEAF - Seaf Morocco Growth Fund</button>
+                    <button class="options-btn" onclick="window.open('https://www.angels4africa.co/', '_blank')">Angels4Africa( de Latartupfactory) - Clubs de business Angels</button>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+            case 'participative':
+                showUserMessage(`Appui à la Finance Participative`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open('http://www.tamwilcom.ma/', '_blank')">TAMWILCOM - DAMANE MOUBACHIR</button>
+                    <button class="options-btn" onclick="window.open('http://www.tamwilcom.ma/', '_blank')">TAMWILCOM - DAMANE DAYN</button>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+            case 'covid':
+                showUserMessage(`Appui à la relance Post-COVID 19`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open('http://www.tamwilcom.ma/', '_blank')">TAMWILCOM - TAMWIL RELANCE</button>
+                    <button class="options-btn" onclick="window.open('http://www.tamwilcom.ma/', '_blank')">TAMWILCOM - DAMANE RELANCE</button>
+                    <button class="options-btn" onclick="window.open('http://www.tamwilcom.ma/', '_blank')">TAMWILCOM - RELANCE TPE</button>
+                    <button class="options-btn" onclick="window.open('https://dev.marocpme.gov.ma/mowakaba-tpme/mowakaba-covid-19/', '_blank')">Maroc PMe - MOUWAKABA-COVID 19</button>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+            case 'export':
+                showUserMessage(`Appui à l'Export`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open('https://www.mcinet.gov.ma/', '_blank')">Ministère de l’industrie - Programme d’appui aux Primo-Exportateurs</button>
+                    <button class="options-btn" onclick="window.open('https://www.mcinet.gov.ma/', '_blank')">Ministère de l’industrie - Programme des contrats de croissance à l'export</button>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+            case 'marchés':
+                showUserMessage(`Appui à l'accès aux marchés`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open('https://cgem.ma/', '_blank')">CGEM - Première Commande</button>
+                    <button class="options-btn" onclick="window.open('https://www.finea.ma/nos-solutions', '_blank')">Finea - Avance sur marchés publics</button>
+                    <button class="options-btn" onclick="window.open('https://www.finea.ma/nos-solutions', '_blank')">Finea - Avance sur marchés privés</button>
+                    <button class="options-btn" onclick="window.open('https://www.finea.ma/nos-solutions', '_blank')">Finea - Cautions</button>
+                    <button class="options-btn" onclick="window.open('https://www.finea.ma/devenir-client', '_blank')">Finea - Finéa Imédia>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+            case 'recrutement':
+                showUserMessage(`Appui au recrutement et à la formation`);
+                optionsHTML = `<B>Structures et Programmes de financement:</B><br>
+                    <button class="options-btn" onclick="window.open('https://miepeec.gov.ma/', '_blank')">Programme national de creation d'emplois 2022-2023 - AWRACH</button>
+                    <button class="options-btn" onclick="window.open('https://anapec.ma/home-page-o1/', '_blank')">anapec - Programme IDMAJ</button>
+                    <button class="options-btn" onclick="window.open('https://anapec.ma/home-page-o1/', '_blank')">anapec - Programme TAHFIZ</button>
+                    <button class="options-btn" onclick="window.open('https://anapec.ma/home-page-o1/', '_blank')">anapec - Programme TAEHIL</button>
+                    <button class="options-btn" onclick="window.open('https://www.ofppt.ma/', '_blank')">OFPPT - Contrats spéciaux de formation</button>
+                    <button class="options-btn" onclick="window.open('https://www.giac.ma/', '_blank')">GIAC - Appui à la formation GIAC</button>
+                    <br><br><button onclick="showStartupOptions()">retour au menu</button>
+                    `
+                break;
+           
+            }
+            showBotMessage(optionsHTML);
+
+    };
+
+
+
+    window.showStartupOptionsBy = function(option) {
+        let optionsHTML = '';
+    
+        switch (option) {
+            case 'secteur':
+                showUserMessage(`Choisir par secteur`);
+                optionsHTML = `
+                    
+                        Choisissez un secteur :<br>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Accommodation</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Advenved Data Analytics</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Api</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Artificial Intelligence</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Augmented reality</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">autonomous vehicule</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Big Data</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Blockchain</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Business Intelligence</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Business Services</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Cloud</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Cloud management</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Communities</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Communications</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Connected Car</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')"> Connectivity</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Construction</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Consumer Goods</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">CRM</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">crowdsourcing</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">custumer service</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">cybersecurity</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Design</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Development Tools</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Digital Home</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Domotics</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Drones</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">E-commerce</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Education</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">ehealth</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Enablers</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Energy</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Engineering</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Entertainment</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">ERP</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Fin Tech</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Fishing</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Fitness</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Games</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Hospitality</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">HR</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Industry 4.0</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Insurtech</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Intelligent mobility</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">IOT</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Legal</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">lifestyle</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Location</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Logistics & Transportation</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Loyalty</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">M2M</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Machine Learning</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Manufacturing</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Marketing</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Media</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Mining</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Mixed reality</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Network</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Non-profit & Government</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Other</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Payment</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Planning Tool</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">PoS</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Proximity</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Real Estate</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Real State</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Recruitment</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Robotic Process Automation (RPA)</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Security (Digital)</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Smart Cities</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Smart Home</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Smart Retail</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Social Networks</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Software Development / Analytics</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Streaming</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Sustainability</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Tourism</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Training</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Transport</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Travel</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Utilities</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Video</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Virtual</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">Visualization</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">wearables</button>
+                        <button class="options-btn" onclick="window.open('secteur1.html', '_blank')">wellness</button><br>  
+                    </div>
+                `;
+                break;
+            case 'batch':
+                showUserMessage(`Choisir par batch`);
+                optionsHTML = `
+                    
+                        Choisissez un batch :
+                        <button class="options-btn" onclick="showBatch('2023')">2023</button>
+                        <button class="options-btn" onclick="showBatch('2024')">2024</button>
+                    
+                `;
+                
+                break;
+            case 'portfolio':
+                showUserMessage(`Voir tout le portfolio`);
+                break;
+        }
+
+        if(user==1){
+            optionsHTML=optionsHTML+'<br><br><button onclick="showInvestisseurOptions()">retour au menu</button>';      
+                }
+        else{
+            optionsHTML=optionsHTML+'<br><br><button onclick="showStartupOptions()">retour au menu</button>';  
+        }
+    
+        showBotMessage(optionsHTML);
+    };
+    
+    window.showContractees = function(approach) {
+         detailsHTML = `Startups ${approach}:<br><B>Star1</B><br> - One line pitch - <br><br><B>Star2</B><br> - One line pitch -`;
+        if(user==1){
+            detailsHTML=detailsHTML+'<br><br><button onclick="showInvestisseurOptions()">retour au menu</button>';      
+                }
+        else{
+            detailsHTML=detailsHTML+'<br><br><button onclick="showStartupOptions()">retour au menu</button>';  
+        }
+        showBotMessage(detailsHTML);
+    };
+
+    window.showBatch = function(option) {
+         detailsHTML = `Startups ${option}:<br><B>Star1</B><br> - One line pitch - <br><br><B>Star2</B><br> - One line pitch -`;
+        if(user==1){
+            detailsHTML=detailsHTML+'<br><br><button onclick="showInvestisseurOptions()">retour au menu</button>';      
+                }
+        else{
+            detailsHTML=detailsHTML+'<br><br><button onclick="showStartupOptions()">retour au menu</button>';  
+        }
+        showBotMessage(detailsHTML);
+    };
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function handleEmailInput(userInput){
+            
+        if (isValidEmail(userInput)) {
+            return 1;
+        } else {
+            showBotMessage(`veuillez saisir un mail valide`);
+            userInput.value = '';
+            return 2
+        }
+    }          
+    
+    function isValidPhoneNumber(phone) {
+        const phoneRegex = /^\+?[0-9]\d{9,14}$/;
+        return phoneRegex.test(phone);
+    }
+
+    function handlephoneInput(userInput) {
+        
+        if (isValidPhoneNumber(userInput)) {
+            return 1;
+        } else {
+            showBotMessage(`veuillez saisir un numero valide`);
+            userInput.value = '';
+            return 2;
+        }
+    }
+
+    function no(){
+                    
+        showUserMessage("Non"); 
+        msg_input.disabled=false;
+        askQuestion("Quel est votre email ?", 'emailI'); 
+
+    }
+        
+
+    function askQuestion(question, field) {
+        showBotMessage(`${question}`);
+        currentQuestion = field;
+    }
+    
+    window.sendMessage = function() {
+        const response = userInput.value.trim();
+        if (!response) return;
+    
+        showUserMessage(`${response}`);
+        userResponses[currentQuestion] = response;
+        userInput.value = '';
+        
+        
+    
+        switch (currentQuestion) {
+    
+            case 'nameS':
+                askQuestion("Quel est votre prénom ?", 'surnameS');
+                break;
+            case 'surnameS':
+                askQuestion("Quel est votre email ?", 'emailS');           
+                break;
+            case 'emailS':        
+                while(handleEmailInput(response)!=1){
+                    response = userInput.value.trim();
+                    if (!response) return;
+                    showUserMessage(`${response}`);
+                    userResponses[currentQuestion] = response;
+                    userInput.value = '';}
+    
+                askQuestion("Quel est votre numéro de téléphone ?", 'phoneS');
+                break;
+            case 'phoneS':
+                while(handlephoneInput(response)!=1){
+                    response = userInput.value.trim(); 
+                    if (!response) return;
+                    showUserMessage(`${response}`);
+                    userResponses[currentQuestion] = response;
+                    userInput.value = '';}
+                askQuestion("Quel est le nom de votre startup ?", 'startup_nameS');
+                break;
+            case 'startup_nameS':
+                askQuestion("Quel est votre One Line Pitch ?", 'one_line_pitchS');
+                break;
+            case 'one_line_pitchS':
+                askQuestion("Quel est le lien de la page de votre startup ?", 'subjectS');
+                break;
+            case 'subjectS':
+                handleFormSubmitS();
+                
+                break;
+    
+            case 'name':
+                askQuestion("Quel est votre prénom ?", 'surname');
+                break;
+            case 'surname':
+                askQuestion("Quel est votre email ?", 'email');
+                break;
+            case 'email':
+                while(handleEmailInput(response)!=1){
+                    response = userInput.value.trim();
+                    if (!response) return;
+                    showUserMessage(`${response}`);
+                    userResponses[currentQuestion] = response;
+                    userInput.value = '';}
+        
+                askQuestion("Quel est votre numéro de téléphone ?", 'phone');
+                break;
+            case 'phone':
+                while(handlephoneInput(response)!=1){
+                    response = userInput.value.trim(); 
+                    if (!response) return;
+                    showUserMessage(`${response}`);
+                    userResponses[currentQuestion] = response;
+                    userInput.value = '';}
+                askQuestion("Quel est l'objet de votre demande ?", 'subject');
+                break;
+            case 'subject':
+                handleFormSubmit();
+                break;
+            case 'nameI':
+                askQuestion("Quel est votre prénom ?", 'surnameI');
+                break;
+            case 'surnameI':
+                askQuestion("Quel est votre email ?", 'emailI');
+                break;
+            case 'emailI':
+                while(handleEmailInput(response)!=1){
+                        response = userInput.value.trim();
+                        if (!response) return;
+                        showUserMessage(`${response}`);
+                        userResponses[currentQuestion] = response;
+                        userInput.value = '';}
+                msg_input.disabled=true;
+                showBotMessage(`Vous validez que <B>${response}</B> est votre email ?<br><br><button onclick="handleFormSubmitI()">Oui</button>               <button onclick="no()">Non</button>`);
+                
+                break;
+            case 'vci':
+                askQuestion("Combien l'entreprise a-t-elle gagné après avoir payé toutes ses dépenses il y a trois ans en MAD ?", 'revenue1');
+                break;
+            case 'revenue1':
+                askQuestion("Combien l'entreprise a-t-elle gagné après avoir payé toutes ses dépenses il y a deux ans ?", 'revenue2');
+                break;
+            case 'revenue2':
+                askQuestion("Combien l'entreprise a-t-elle gagné après avoir payé toutes ses dépenses l'année dernière ?", 'revenue3');
+                break;
+            case 'revenue3':
+                askQuestion("Combien l'entreprise a-t-elle donné de ses profits à ses actionnaires il y a trois ans ?", 'dividend1');
+                break;
+            case 'dividend1':
+                askQuestion("Combien l'entreprise a-t-elle donné de ses profits à ses actionnaires il y a deux ans ?", 'dividend2');
+                break;
+            case 'dividend2':
+                askQuestion("Combien l'entreprise a-t-elle donné de ses profits à ses actionnaires l'année dernière ?", 'dividend3');
+                break;
+            case 'dividend3':
+                askQuestion("De combien pense-t-on que les profits de l'entreprise vont augmenter chaque année dans les deux années à venir (en pourcentage) ?", 'growthRate');
+                break;
+            case 'growthRate':
+                askQuestion("Combien pense-t-on que l'entreprise va gagner après avoir payé toutes ses dépenses l'année prochaine ?", 'futureRevenue1');
+                break;
+            case 'futureRevenue1':
+                askQuestion("Combien pense-t-on que l'entreprise va gagner après avoir payé toutes ses dépenses dans deux ans ?", 'futureRevenue2');
+                break;
+            case 'futureRevenue2':
+                askQuestion("Combien l'entreprise prévoit-elle de donner de ses profits à ses actionnaires l'année prochaine ?", 'futureDividend1');
+                break;
+            case 'futureDividend1':
+                askQuestion("Combien l'entreprise prévoit-elle de donner de ses profits à ses actionnaires dans deux ans ?", 'futureDividend2');
+                break;
+            case 'futureDividend2':
+                calculateValuation(userResponses['vci'],userResponses['revenue1'],userResponses['revenue2'],userResponses['revenue3'],userResponses['dividend1'],userResponses['dividend2'],userResponses['dividend3'],userResponses['growthRate'],userResponses['futureRevenue1'],userResponses['futureRevenue2'],userResponses['futureDividend1'],userResponses['futureDividend2']);
+                break;
+            default:
+                console.log("Réponse non reconnue");
+        }
+    }  
+    
+    function handleFormSubmitS() {
+        
+        const detailsHTML =`Merci Mr/Mme <B>${userResponses['nameS']}</B>!<br>Votre solution a été envoyée.<br><br><button onclick="showStartupOptions()">retour au menu</button>`;
+        showBotMessage(detailsHTML);
+        currentQuestion='';
+        msg_input.disabled=true;
+        // Ici, vous pouvez envoyer les réponses à votre serveur si nécessaire.
+    }
+
+    function handleFormSubmit() {
+        
+        const detailsHTML =`Merci Mr/Mme <B>${userResponses['name']}</B> pour votre intéraction!<br> Votre demande sera bientôt traitée.<br><br><button onclick="showStartupOptions()">retour au menu</button>`;
+        showBotMessage(detailsHTML);
+        currentQuestion='';
+        msg_input.disabled=true;
+        // Ici, vous pouvez envoyer les réponses à votre serveur si nécessaire.
+    }
+
+    function handleFormSubmitI() {
+        showUserMessage("Oui");
+        const detailsHTML =`Merci Mr/Mme <B>${userResponses['nameI']}</B> pour votre intéraction!<br>Votre demande sera bientôt traitée.<br><br><button onclick="showInvestisseurOptions()">retour au menu</button>`;
+        showBotMessage(detailsHTML);
+        currentQuestion='';
+        msg_input.disabled=true;
+        // Ici, vous pouvez envoyer les réponses à votre serveur si nécessaire.
+    }
+    
+    function calculateValuation(vci, revenue1, revenue2, revenue3, dividend1, dividend2, dividend3, growthRate, futureRevenue1, futureRevenue2, futureDividend1, futureDividend2) {
+   
+    vci = parseFloat(vci);
+    revenue1 = parseFloat(revenue1);
+    revenue2 = parseFloat(revenue2);
+    revenue3 = parseFloat(revenue3);
+    dividend1 = parseFloat(dividend1);
+    dividend2 = parseFloat(dividend2);
+    dividend3 = parseFloat(dividend3);
+    growthRate = parseFloat(growthRate);
+    futureRevenue1 = parseFloat(futureRevenue1);
+    futureRevenue2 = parseFloat(futureRevenue2);
+    futureDividend1 = parseFloat(futureDividend1);
+    futureDividend2 = parseFloat(futureDividend2);
+    
+
+    // Calcul de la valeur comptable actuelle (VCA)
+    let vca = vci + (revenue1 - dividend1) + (revenue2 - dividend2) + (revenue3 - dividend3);
+
+
+    // Calcul de la valeur future avec le taux de croissance
+    let vcfGrowthModel = vca * Math.pow(1 + growthRate, 2);
+
+    const detailsHTML =`La valorisation comptable de votre entreprise est estime a: ${vca}<br>
+    Valeur comptable future : ${vcfGrowthModel}<br>
+    <button onclick="showStartupOptions()">retour au menu</button>`;
+    showBotMessage(detailsHTML);
+
+    currentQuestion='';
+    msg_input.disabled=true;
+
+}
+
+
+    showInitialOptions();
+    
+
+</script>
+</body>
+</html>
+

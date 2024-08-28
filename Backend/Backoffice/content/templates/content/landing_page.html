@@ -1,0 +1,15 @@
+<!-- content/templates/content/landing_page.html -->
+{% extends 'base.html' %}
+
+{% block title %}Content Management{% endblock %}
+
+{% block content %}
+<h2>Content Management</h2>
+<p>Welcome to the content management page. From here, you can update the content of the landing page and other sections.</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save changes</button>
+</form>
+{% endblock %}

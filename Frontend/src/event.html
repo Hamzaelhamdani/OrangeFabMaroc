@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Orange Fab</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300|Open+Sans:300|Oxygen|Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FAF6F7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: #FAF6F2;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            position: absolute;
+            top: 25px;
+            left: 15px;
+            height: 75px;
+        }
+
+        header h1 {
+            position: absolute;
+            top: 30px;
+            left: 100px;
+            font-size: 30px;
+            font-weight: bolder;
+            color: #ffffff;
+            font-family: 'Rubik One', sans-serif;
+            width: 261px;
+            height: 52px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 10px;
+            margin: 0;
+            border-radius: 50px;
+            position: absolute;
+            top: 40px;
+            left: 350px;
+            width: auto;
+            height: auto;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #171717;
+            border: 1px groove #fff;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px;
+            display: block;
+            text-align: center;
+            font-family: 'Rubik Light', sans-serif;
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+
+        nav ul li a.active {
+            background-color: #FD853A;
+            color: #fff;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 42px;
+            right: 30px;
+            display: inline-block;
+        }
+
+        .language-btn {
+            background-color: rgb(23, 23, 23);
+            border: 1px groove white;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 24px;
+            font-family: 'Rubik', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 140px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 10px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .flag-icon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .orange-fab {
+            color: #FF7900;
+            font-weight: bold;
+        }
+
+        .or {
+            color: #050505;
+            font-weight: bold;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: url('../images/background.png') no-repeat center center/cover;
+            z-index: 1;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: #f1d6bc;
+            margin-bottom: 600px;
+            margin-top: 100px;
+        }
+
+        .location-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .location-selector span {
+            font-size: 16px;
+            color: #333;
+        }
+
+        #location {
+            margin-left: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .category.active, .category:hover {
+            border-bottom: 2px solid blue;
+            color: blue;
+        }
+
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .event-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 300px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .event-card .content {
+            padding: 15px;
+        }
+
+        .event-card .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .event-card .datetime, .event-card .place, .event-card .price, .event-card .form-link {
+            margin-bottom: 5px;
+        }
+
+        .event-card .form-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .event-card .form-link a:hover {
+            text-decoration: underline;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 300px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+
+        .footer-title {
+            color: #F2F4FF;
+            opacity: 55%;
+            text-align: left;
+        }
+
+        .footer-text {
+            text-align: left;
+        }
+
+        .footer-column p {
+            margin: 5px 0;
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icons img {
+            margin: 0 10px;
+            width: 24px;
+            height: 24px;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <header>
+        <img src="../images/orange.png" alt="Orange Logo" class="logo">
+        <h1 class="or">Orange Fab Maroc</h1>
+        <nav>
+            <ul>
+                <li><a href="Accueil.html" data-en="Homepage" data-fr="Accueil" class="active">Homepage</a></li>
+                <li><a href="Portfolio.html" data-en="Portfolio" data-fr="Portfolio">Portfolio</a></li>
+                <li><a href="Chatbot.html" data-en="ChatBot" data-fr="ChatBot">ChatBot</a></li>
+                <li><a href="Coming-soon.html" data-en="Events" data-fr="Événements">Events</a></li>
+                <li><a href="Coming-soon.html" data-en="News" data-fr="Nouvelles">News</a></li>
+            </ul>
+            <div class="dropdown">
+                <button class="language-btn" onclick="switchLanguage()">Language</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="switchLanguage('en')">
+                        <img src="../images/uk.png" alt="UK Flag" class="flag-icon"> English
+                    </a>
+                    <a href="#" onclick="switchLanguage('fr')">
+                        <img src="../images/france.png" alt="France Flag" class="flag-icon"> French
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="centered-image">
+            <img src="../images/orange.png" alt="Orange Logo">
+        </div>
+
+        <div class="container">
+            <div class="location-selector">
+                <span>Browsing events in </span>
+                <select id="location">
+                    <option value="Mountain View">Mountain View</option>
+                </select>
+            </div>
+            <div class="categories">
+                <button class="category active">All</button>
+                <button class="category">For you</button>
+                <button class="category">Online</button>
+                <button class="category">Today</button>
+                <button class="category">This weekend</button>
+                <button class="category">Free</button>
+                <button class="category">Music</button>
+                <button class="category">Food & Drink</button>
+                <button class="category">Charity & Causes</button>
+            </div>
+        </div>
+
+        <div id="events-container" class="portfolio-grid">
+            <!-- Dynamic event cards will be appended here -->
+        </div>
+
+        <div id="eventModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <img id="modalBanner" src="" alt="Event Banner" style="width: 100%; height: auto;">
+                <p id="modalDescription"></p>
+                <p id="modalDateTime"></p>
+                <p id="modalLocation"></p>
+                <p id="modalPrice"></p>
+                <a id="modalFormLink" href="#" target="_blank">Register Here</a>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                axios.get('http://127.0.0.1:8000/events/api/events/')
+                    .then(function (response) {
+                        const events = response.data;
+                        const container = document.getElementById('events-container');
+                        
+                        events.forEach(event => {
+                            const card = document.createElement('div');
+                            card.className = 'event-card';
+                            card.innerHTML = `
+                                <img src="/media/event_banners/${event.banner_image}" alt="${event.title}">
+                                <div class="content">
+                                    <div class="title">${event.title}</div>
+                                    <div class="datetime">${event.start_date} to ${event.end_date} • ${event.start_time} to ${event.end_time}</div>
+                                    <div class="place">${event.place}</div>
+                                    <div class="price">From ${event.price}</div>
+                                    <button class="form-link">Register Here</button>
+                                </div>
+                            `;
+                            card.addEventListener('click', function() {
+                                openModal(event);
+                            });
+                            container.appendChild(card);
+                        });
+                    })
+                    .catch(function (error) {
+                        console.error('Error fetching event data:', error);
+                    });
+
+                const modal = document.getElementById("eventModal");
+                const span = document.getElementsByClassName("close")[0];
+
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+
+                function openModal(event) {
+                    document.getElementById('modalTitle').innerText = event.title;
+                    document.getElementById('modalBanner').src = "/media/" + event.banner_image;
+                    document.getElementById('modalDescription').innerText = event.description;
+                    document.getElementById('modalDateTime').innerText = `${event.start_date} to ${event.end_date} • ${event.start_time} to ${event.end_time}`;
+                    document.getElementById('modalLocation').innerText = event.place;
+                    document.getElementById('modalPrice').innerText = `From ${event.price}`;
+                    document.getElementById('modalFormLink').href = event.form_link;
+                    modal.style.display = "block";
+                }
+            });
+        </script>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <p class="footer-title" data-en="About Us" data-fr="À propos de nous"><i>About Us</i></p>
+                <p class="footer-text" data-en="Our Startups" data-fr="Nos startups">Our Startups</p>
+                <p class="footer-text" data-en="Our Clients" data-fr="Nos clients">Our Clients</p>
+            </div>
+            <div class="footer-column">
+                <p class="footer-title" data-en="Spaces" data-fr="Espaces">Spaces</p>
+                <p class="footer-text" data-en="Rabat" data-fr="Rabat">Rabat</p>
+                <p class="footer-text" data-en="Agadir" data-fr="Agadir">Agadir</p>
+                <p class="footer-text" data-en="Tanger" data-fr="Tanger">Tanger</p>
+            </div>
+            <div class="footer-column">
+                <p class="footer-title" data-en="Support" data-fr="Support">Support</p>
+                <p class="footer-text" data-en="Contact" data-fr="Contact">Contact</p>
+                <p class="footer-text" data-en="Legal Notice" data-fr="Mentions légales">Legal Notice</p>
+                <p class="footer-text" data-en="Private Policy" data-fr="Politique de confidentialité">Private Policy</p>
+                <p class="footer-text" data-en="Cookies" data-fr="Cookies">Cookies</p>
+                <p class="footer-text" data-en="Cookies Configuration" data-fr="Configuration des cookies">Cookies Configuration</p>
+            </div>
+            <div class="footer-column social-icons">
+                <img src="../images/x.png" alt="X Icon">
+                <img src="../images/linkedin.png" alt="LinkedIn Icon">
+                <img src="../images/instagram.png" alt="Instagram Icon">
+                <img src="../images/youtube.png" alt="YouTube Icon">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

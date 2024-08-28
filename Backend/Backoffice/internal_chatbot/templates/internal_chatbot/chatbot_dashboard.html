@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Chatbot Dashboard{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Chatbot Questions and Answers</h1>
+</header>
+<main class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for question in questions %}
+            <tr>
+                <td>{{ question.question }}</td>
+                <td>{{ question.answer }}</td>
+                <td>
+                    <a href="{% url 'edit_question' question.pk %}" class="btn btn-warning">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main> 
+{% endblock %}

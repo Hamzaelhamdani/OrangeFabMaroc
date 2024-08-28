@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            height: 100vh;
+            position: fixed;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 15px;
+            width: 100%;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="{% url 'dashboard-index' %}">Dashboard</a></li>
+                <li><a href="{% url 'events:event_list' %}">Events</a></li>
+                <li><a href="{% url 'news:list_news' %}">News</a></li>
+                <li><a href="{% url 'startups:list' %}">Portfolio</a></li>
+                <li><a href="{% url 'startups:batch_list' %}">Batches</a></li>
+                <li><a href="{% url 'notifications:notification_list' %}">Notifications</a></li>
+                {% if user.is_superuser %}
+                    <li><a href="{% url 'user_list' %}">Manage Users</a></li>
+                {% endif %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+    <div class="content">
+        <header>
+            <h1>{% block content %}My App{% endblock %}</h1>
+        </header>
+        <main>
+        </main>
+    </div>
+</body>
+</html>
