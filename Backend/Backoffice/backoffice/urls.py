@@ -14,4 +14,5 @@ urlpatterns = [
     path('startups/', include('startups.urls', namespace='startups')),
     path('internal_chatbot/', include('internal_chatbot.urls')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
+    path('chatbot/', include('chatbot.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

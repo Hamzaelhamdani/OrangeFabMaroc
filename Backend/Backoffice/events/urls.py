@@ -17,3 +17,4 @@ urlpatterns = [
     path('toggle_visibility/<int:id>/', views.toggle_visibility, name='toggle_visibility'),
     path('api/events/', EventListView.as_view(), name='api_events'),
 ]
+  

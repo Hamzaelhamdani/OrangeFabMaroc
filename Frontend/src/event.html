@@ -373,9 +373,7 @@
 
     <main>
 
-        <div class="centered-image">
-            <img src="../images/orange.png" alt="Orange Logo">
-        </div>
+ 
 
         <div class="container">
             <div class="location-selector">
@@ -416,7 +414,7 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                axios.get('http://127.0.0.1:8000/events/api/events/')
+                axios.get('http://127.0.0.1:8040/events/api/events/')
                     .then(function (response) {
                         const events = response.data;
                         const container = document.getElementById('events-container');
@@ -425,7 +423,7 @@
                             const card = document.createElement('div');
                             card.className = 'event-card';
                             card.innerHTML = `
-                                <img src="/media/event_banners/${event.banner_image}" alt="${event.title}">
+                                <img src="http://127.0.0.1:8040/${event.banner_image}" alt="${event.title}">
                                 <div class="content">
                                     <div class="title">${event.title}</div>
                                     <div class="datetime">${event.start_date} to ${event.end_date} • ${event.start_time} to ${event.end_time}</div>

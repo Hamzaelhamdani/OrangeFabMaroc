@@ -466,7 +466,7 @@
             <li><a href="Accueil.html">Accueil</a></li>
             <li><a href="Portfolio.html">Portfolio</a></li>
             <li><a href="Chatbot.html">ChatBot</a></li>
-            <li><a href="event.html">Events</a></li>
+            <li><a href="events.html">Events</a></li>
             <li><a href="news.html">News</a></li>
         </ul>
         <div class="auth-buttons">
@@ -610,7 +610,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        axios.get('http://127.0.0.1:8000/startups/api/startups/')
+        axios.get('http://127.0.0.1:8040/startups/api/startups/')
             .then(function (response) {
                 const startups = response.data;
                 const container = document.getElementById('portfolio-container');
@@ -620,7 +620,7 @@
                     box.className = 'startup-card';
                     box.innerHTML = `
                         <span class="city">${startup.city}</span>
-                        <img src="${startup.logo}" alt="${startup.name}" class="startup-logo">
+                        <img src="http://127.0.0.1:8040/${startup.logo}" alt="${startup.name}" class="startup-logo">
                         <h3 class="startup-name">${startup.name}</h3>
                         <p class="description">${startup.description}</p>
                         <span class="tag">${startup.tags}</span>
@@ -637,3 +637,6 @@
 </script>
 </body>
 </html>
+
+
+

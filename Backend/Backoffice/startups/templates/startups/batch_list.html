@@ -43,28 +43,101 @@
         {% endfor %}
     </tbody>
 </table>
-{% endblock %}
+
 
 <style>
-    .startup-logo {
-        width: 100px;
-        height: auto;
-        max-height: 100px;
-    }
 
-    table {
-        width: 100%;
-        margin-top: 20px;
-        border-collapse: collapse;
-    }
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+/* Style général du titre */
+h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ff7900; /* Ligne orange sous le titre */
+    padding-bottom: 10px;
+}
 
-    th {
-        background-color: #f2f2f2;
-    }
+/* Style du formulaire */
+form {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Style des labels */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Style des sélecteurs */
+select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* Style du tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Style des cellules du tableau */
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* Style des en-têtes du tableau */
+th {
+    background-color: #ff7900; /* Couleur d'Orange */
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Style des cellules du tableau */
+td {
+    background-color: #fff;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Style des lignes alternées */
+tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+/* Style des liens dans les cellules */
+td a {
+    color: #ff7900;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Style des liens au survol */
+td a:hover {
+    text-decoration: underline;
+}
+
+/* Style des logos des startups */
+.startup-logo {
+    width: 80px;
+    height: auto;
+    max-height: 80px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    object-fit: contain;
+}
+
+
+
 </style>
+{% endblock %}

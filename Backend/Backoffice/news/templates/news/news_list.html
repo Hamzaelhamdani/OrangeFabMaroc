@@ -34,4 +34,104 @@
         {% endfor %}
     </tbody>
 </table>
+<style>
+
+
+
+h2 {
+    color: black; /* Couleur principale d'Orange */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+a.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: black;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e66900; /* Variation de l'orange */
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table thead {
+    background-color: #ff7900;
+    color: white;
+    font-weight: bold;
+}
+
+table th, 
+table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table tbody tr:hover {
+    background-color: #ffe0b2; /* Surbrillance douce */
+}
+
+img {
+    border-radius: 5px;
+    max-width: 100px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+table a:hover {
+    color: #0056b3;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+
+</style>
 {% endblock %}

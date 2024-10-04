@@ -1,10 +1,123 @@
 {% extends 'base.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
-    <h2>Login</h2>
+<div class="login-container">
+    <div class="logo-wrapper">
+        <img src="/Backend/Backoffice/media/images-backoffice/orange.png" alt="Orange Logo" class="logo">
+        <span class="logo-text">Orange Fab</span>
+    </div>
+
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+       
+        <label for="id_username">Email *</label>
+        <input type="text" name="username" id="id_username" placeholder="Input text">
+        
+        <label for="id_password">Password *</label>
+        <input type="password" name="password" id="id_password" placeholder="********">
+        
+        <div class="remember-me">
+            <input type="checkbox" id="remember-me">
+            <label for="remember-me">Remember me</label>
+        </div>
+        
         <button type="submit">Login</button>
     </form>
+</div>
+
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #E5E5E5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 100px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+    margin: 120px;
+}
+
+.logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+img.logo {
+    width: 50px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF7900;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type="text"], 
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    background-color: #FF7900;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button[type="submit"]:hover {
+    background-color: #e66d00;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+</style>
 {% endblock %}

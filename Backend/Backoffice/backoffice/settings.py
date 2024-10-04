@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'startups',
     'internal_chatbot',
     'notifications',
+    'chatbot',
 ]
 
 MIDDLEWARE = [
