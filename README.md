@@ -244,11 +244,3 @@ If you would like to contribute to this project, please follow these steps:
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
-## Contact Information
-
-For more information or if you have any questions, feel free to reach out:
-
-- **Name**: Taha BOUKAA
-- **Email**: [tahaboukaa10@gmail.com](tahaboukaa10@gmail.com)
-- **GitHub**: [github.com/tahaboukaa](https://github.com/tahaboukaa)
